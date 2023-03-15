@@ -1,0 +1,36 @@
+
+<div *ngIf="SearchResults.active; then thenBlock else elseBlock"></div>
+<ng-template #thenBlock>
+  <div class="container text-center mt-3">
+    <div class="bg-light m-3">
+      <h2 *ngIf="SearchResults.products?.length != 0">Resultado coincidente.</h2>
+      <h2 *ngIf="SearchResults.products?.length == 0">No hay coincidencias para su busqueda.</h2>
+      <div class="container mt-3 mb-3" style="background-color: MidnightBlue;">   
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+          <div class="card-group" *ngFor="let product of SearchResults.products" >
+            <div class="card p-2 m-2">
+              <app-best-sells [productP]="product"></app-best-sells>
+            </div>     
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #elseBlock>
+  <div class="container text-center mt-3">
+    <div class="bg-light m-3">
+      <h2>Productos populares.</h2>
+      <div class="container mt-3 mb-3" style="background-color: MidnightBlue;">   
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
+          <div class="card-group" *ngFor="let product of bestSellProducts" >
+            <div class="card p-2 m-2">
+              <app-best-sells [productP]="product"></app-best-sells>
+            </div>     
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+

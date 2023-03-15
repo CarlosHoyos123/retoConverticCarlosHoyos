@@ -1,0 +1,10 @@
+
+<div class="container text-center p-2">
+    <div class="row row-cols-6">
+      <div class="card-group" *ngFor="let item of productsMainGridList">
+        <div class="card rounded-0 border-0">
+          <app-product-grid [mainList]="item" ></app-product-grid>
+      </div>
+      </div>
+    </div>
+  </div>

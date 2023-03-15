@@ -1,0 +1,9 @@
+<div class="card border border-0  m-2">
+  <img class="card-img-top" src={{productP?.rutaFoto}} alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title text-uppercase">{{productP?.producto}}</h5>
+    <p class="card-text text-uppercase">{{productP?.descripcion}}.</p>
+    <a  [routerLink]="['/Product/detail', productP?.id]" class="btn btn-primary">Ir al producto</a>
+  </div>
+</div>
+

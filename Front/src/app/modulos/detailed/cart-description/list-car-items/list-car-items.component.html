@@ -1,0 +1,25 @@
+<div><p class="text-center text-uppercase fs-1">Carrito de compras</p></div>
+    <table class="table">
+      <thead class="table-dark text-center">
+        <tr>
+          <th scope="col">Producto</th>
+          <th scope="col">Talla</th>
+          <th scope="col">Color</th>
+          <th scope="col">Precio unidad</th>
+          <th scope="col">Unidades</th>
+          <th scope="col">Sub total</th>
+          <th scope="col">Eliminar producto</th>
+        </tr>
+      </thead>
+      <tbody class="table-group-divider table-light">
+        <tr *ngFor="let item of itemsToList">
+          <td >{{item.producto.producto}}</td>
+          <td >{{item.talla.talla}}</td>
+          <td >{{item.color.color}}</td>
+          <td>{{item.producto.precio}}</td>
+          <td>{{item.cantidad}}</td>
+          <td>{{item.cantidad*item.producto.precio}}</td>
+          <button type="button" class="btn btn-outline-danger" (click)="delete(item)">Eliminar</button>
+        </tr>
+      </tbody>
+    </table>

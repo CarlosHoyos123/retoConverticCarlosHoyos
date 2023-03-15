@@ -1,0 +1,45 @@
+  <div class="container text-center border rounded-5 p-4 bg-body-secondary">
+      <div class="col-auto opacity-75">
+      <form>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label"> <b>Correo electrónico.</b></label>
+            <input name="correo" type="email" [(ngModel)] = login.correo class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" >
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label"> <b>Contraseña.</b></label>
+            <input name="clave"  type="password" class="form-control" id="exampleInputPassword1" [(ngModel)] = login.clave>
+          </div>
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1" >
+            <label class="form-check-label" for="exampleCheck1">Darme de baja.</label>
+          </div>
+          <div class="row">
+            <div class="col" id="login"> 
+              <button type="button" class="btn btn-info btn-lg" (click)="onSubmit()">{{logInMsg}}</button>
+            </div>
+            <div class="col" id="sing-up">
+              <button type="button" class="btn btn-info btn-lg" data-bs-toggle="modal" data-bs-target="#registryModal">{{RegisterMsg}}</button>
+            </div>
+          </div>
+      </form>
+      </div>
+      <div class="modal fade" id="registryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+
+              <h5 class="modal-title text-capitalize" id="exampleModalLabel text-capitalize">{{nuevoUsuarioMensaje}}</h5>
+              <button type="button" #closebutton class="btn-close" data-bs-dismiss="modal" aria-bs-label="Close">&times;</button>
+
+            </div>
+            <div class="modal-body">
+              <app-registro (confirmed) = "closeRegistry($event)"></app-registro>
+            </div> 
+            <div class="modal-footer">
+              <p class="fs-3 text-center fw-semibold">Convetic<span class="fw-bold" style="color: MediumTurquoise;">Shop</span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+

@@ -1,0 +1,83 @@
+<div class="overlay" *ngIf="!load">  
+  <button class="btn btn-primary" type="button" disabled>
+    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+    Loading...
+  </button>
+</div>
+<ng-container *ngIf="load">
+  <button type="button" class="btn-close position-absolute top-0 end-0" aria-label="Close"></button>
+  <div class="container text-center">
+    <div class="row pt-3">
+      <div class="col-6">
+        <img src= {{description.rutaFoto}} class="img-thumbnail rounded-4 border border-primary h-100" alt="...">
+        <hr class="border border-dark border-3 mb-4">
+        <h3 class="fw-bold">{{description.nombre}}</h3>
+        <h3 class="fw-semibold">{{description.fabricante}}</h3>
+        <p>{{description.descripcion}}</p>
+      </div>
+      <div class="col-6">
+        <p class="fs-1 fw-bold text-primary-emphasis">{{description.nombre}}: </p>
+        <p class="fs-1 fw-bold p-3"> $ {{description.precio}} COP </p>
+        <p class="fst-italic fs-3 fw-semibold p-2">Seleccione talla para ver disponibilidad de colores</p>
+        <div class="row">
+          <div class="col-auto">
+            <p class="fs-2 fw-semibold"> Seleccione talla. </p>
+          </div>
+          <div class="col">
+            <div class="container text-center">
+              <div class="row row-cols-1 row-cols-md-2">
+                <div class="container text-center">
+                  <div class="form-floating">
+                    <select class="form-select form-select-lg" id="floatingSelect" aria-label="Floating label select example" name="sizesOptions" [ngModel]="selectedSize" (ngModelChange)="toggleSize($event)">
+                      <option [ngValue]="size" *ngFor="let size of sizes">{{size.talla}}</option>
+                    </select>
+                    <label for="floatingSelect">Seleccione talla</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col">
+            <p class="fs-2 m-2 fw-semibold">Seleccione Color.</p>
+          </div>
+        </div>
+        <div class="row row-cols-1 row-cols-md-3 m-3">
+          <div *ngFor="let color of FilteredColorsBySize">
+            <app-select-button [color]="color" (colorSelection)="toggleColor($event)"></app-select-button>
+          </div>
+        </div>
+        <div class="container text-center m-3">
+          <div class="row">
+            <div class="col">
+              <span class="fw-semibold">cantidad: </span> 
+            </div>
+            <div class="col">
+              <input type="number" [(ngModel)]="quantitySelected" class="form-control-sm" id="quantityInput"  min="1" max="{{quantityLimit}}" value="2">
+            </div>
+            <div class="col">
+              <div *ngIf="quantityLimit != 0; then thenBlock else elseBlock"></div>
+              <ng-template #thenBlock>
+                <span class="QuantityInStock"> ({{quantityLimit}} disponibles)</span>
+              </ng-template>
+              <ng-template #elseBlock>
+                <span class="QuantityInStock"> ({{noItemsMesage}})</span>
+              </ng-template>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="row text-center pt-3">
+            <div class="col">
+              <button type="button" class="btn btn-primary" (click)="itemToCart()">Agregar al carrito</button>
+            </div>
+            <div class="col">
+              <button type="button" class="btn btn-primary" (click)="goToCart()">Ver Mi carrito</button>
+            </div>
+          </div>
+        </div>
+      </div>   
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="registryForm">
+    <form class="row g-3">
+      <div class="row">
+        <div class="col mt-3 border p-2">
+          <label for="inputEmail4" class="form-label fw-semibold">Correo</label>
+          <input type="email" class="form-control form-control-sm" id="inputEmail4" name="email" [(ngModel)] = newUser.email>
+        </div>
+      </div>
+      <div class="row mt-3 border p-2">
+        <div class="col-lg-6">
+          <label for="inputPassword4" class="form-label fw-semibold">Contraseña</label>
+          <input type="password" class="form-control form-control-sm" id="inputPassword4" name="password" [(ngModel)] = newUser.contrasenia>
+        </div>
+        <div class="col-lg-6 ">
+          <label for="inputPassword4" class="form-label fw-semibold">Confirme Contraseña</label>
+          <input type="password" class="form-control form-control-sm" id="inputPassword4" name="passwordConfirm" [(ngModel)] = passwordConfirm>
+        </div>
+      </div>
+      <div class="row mt-3 border p-2">
+        <div class="col-lg-6">
+          <label for="inputAddress" class="form-label fw-semibold">Primer nombre</label>
+          <input type="text" class="form-control" id="inputAddress" name="pnombre" [(ngModel)] = newUser.primerNombre>
+        </div>
+        <div class="col-lg-6">
+          <label for="inputAddress" class="form-label fw-semibold">Segundo Nombre</label>
+          <input type="text" class="form-control" id="inputAddress" name="snombre" [(ngModel)] = newUser.segundoNombre>
+        </div>
+      </div>
+      <div class="row mt-3 border p-2">
+        <div class="col-lg-6">
+          <label for="inputAddress" class="form-label fw-semibold">Primer Apellido</label>
+          <input type="text" class="form-control" id="inputAddress" name="papellido" [(ngModel)] = newUser.primerApellido>
+        </div>
+        <div class="col-lg-6">
+          <label for="inputAddress" class="form-label fw-semibold">Segundo Apellido</label>
+          <input type="text" class="form-control" id="inputAddress" name="sapellido" [(ngModel)] = newUser.segundoApellido>
+        </div>
+      </div>
+      <div class="row mt-3 border p-2">
+        <div class="col-4">
+          <label for="exampleFormControlSelect1" class="form-label fw-semibold">Tipo Documento</label>
+          <select class="form-control" id="exampleFormControlSelect1" name="tipoDocumento" [(ngModel)] = newUser.tipoDocumento.id>
+            <option value="">Seleccione.</option>
+            <option *ngFor="let documento of selectDocumentInfo" value= {{documento.id}}>
+              {{documento.tipoDocumento}}
+            </option>
+          </select>
+        </div>
+        <div class="col-4">
+          <label for="inputAddress" class="form-label fw-semibold">Numero Documento</label>
+          <input type="text" class="form-control" id="inputAddress" name="numDocumento" [(ngModel)] = newUser.numeroDocumento>
+        </div>
+        <div class="col-4">
+          <label for="exampleFormControlSelect1" class="form-label fw-semibold">Pais</label>
+          <select class="form-control" id="exampleFormControlSelect1"  name="pais"  [(ngModel)] = newUser.pais.id>
+            <option value="">Seleccione.</option>
+            <option *ngFor="let pais of selectCountryInfo" value= {{pais.id}}>
+              {{pais.nombrePais}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="row mt-3 border p-2">
+        <div class="col-lg-6">
+          <label for="inputAddress" class="form-label fw-semibold">Numero de teléfono</label>
+          <input type="text" class="form-control" id="inputAddress" name="Telefono" [(ngModel)] = newUser.telefono>
+        </div>
+        <div class="col-lg-6">
+          <label for="exampleFormControlSelect1" class="form-label fw-semibold">Tipo de telefono</label>
+          <select class="form-control" id="exampleFormControlSelect1" name="tipoTelefono" [(ngModel)] = newUser.tipoTelefono.id>
+            <option value="">Seleccione.</option>
+            <option *ngFor="let type of selectPhoneInfo" value= {{type.id}}>
+              {{type.tipoTelefono}}
+            </option>
+          </select>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-info btn-lg text-capitalize fw-semibold" (click)="onSubmit()">Registrarse.</button>
+    </form>
+  </div>
+</div>

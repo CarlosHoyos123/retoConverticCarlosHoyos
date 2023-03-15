@@ -1,0 +1,66 @@
+<div class="container text-center">
+  <div class="row align-items-center">
+    <div class="col col-sm-auto col-lg-8">
+      <div><p class="text-center text-uppercase fs-3">Resumen de factura</p></div>
+      <table class="table table-striped-columns table-bordered">
+        <thead class="table-dark text-center">
+          <tr>
+            <th scope="col">Cantidad Productos</th>
+            <th scope="col">SubTotal</th>
+            <th scope="col">Iva</th>
+            <th scope="col">Total a pagar</th>
+          </tr>
+        <tbody>
+          <tr>
+            <td >{{totalItemsToBuy}}</td>
+            <td>{{subTotal}}</td>
+            <td>{{iva}}</td>
+            <td>{{subTotal*(1+iva)}}</td>      </tr>
+        </tbody>
+      </table>
+      <ng-container *ngIf="totalItemsToBuy > 0">
+      <div class="row">
+        <div class="col" data-bs-theme="dark">
+          <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#ConfirmSell">{{confirmMsg}}</button>
+        </div>
+      </div>
+    </ng-container>
+    </div>
+    <div class="col col-sm-auto col-lg-4 fs-5 fw-semibold border border-info rounded-4 pt-2" style="background-color: LightCyan;">
+      <p>Recuerda que tu pago es contra entrega, para terminar la compra haz clic en el botón de la parte inferior y confirma tu información.</p>
+    </div>
+  </div>
+  <hr>
+    <div class="row">
+      <div class="col col-sm-auto col-lg-12">
+        <div>
+          <app-list-car-items [itemsToList] = "items"
+          (deleteItem)="deleteItemInCar($event)"></app-list-car-items>
+        </div>
+        <div class="row">
+          <div class="col" data-bs-theme="dark">
+            <button type="button" class="btn btn-dark" (click)="goToHome()">Seguir comprando</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<div class="modal fade" id="ConfirmSell" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        
+        <h5 class="modal-title text-capitalize" id="adressInfo text-capitalize">{{newSellMsg}}</h5>
+        <button type="button" #closebutton class="btn-close" data-bs-dismiss="modal" aria-label="Close">&times;</button>
+        
+      </div>
+      <div class="modal-body">
+        <app-send-description [carItems] = "items"
+        (confirmed) = "closeDialog($event)"></app-send-description>
+      </div> 
+      <div class="modal-footer">
+        <p class="fs-3 text-center fw-semibold">Convetic<span class="fw-bold" style="color: MediumTurquoise;">Shop</span></p>
+      </div>
+    </div>
+  </div>
+</div>

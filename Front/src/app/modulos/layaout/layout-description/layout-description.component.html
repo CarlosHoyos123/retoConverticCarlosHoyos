@@ -1,0 +1,5 @@
+<app-nav-bar (info)="setSearchBarResults($event)"></app-nav-bar>
+<div *ngIf="infoSearch.active">
+    <app-products [SearchResults]="infoSearch"></app-products>
+</div>
+<router-outlet></router-outlet>

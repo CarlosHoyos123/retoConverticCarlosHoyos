@@ -1,0 +1,6 @@
+<div class= "m-2" style="background-color: white;">
+    <app-nav-bar (info)="setSearchBarResults($event)"></app-nav-bar>
+    <app-banner></app-banner>
+    <app-products [SearchResults]="infoSearch"></app-products>
+    <router-outlet></router-outlet>
+</div>

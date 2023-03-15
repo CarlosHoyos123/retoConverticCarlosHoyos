@@ -1,0 +1,112 @@
+<div class="container">
+    <div class="miInformationForm">
+      <form class="row g-3">
+        <div class="row mt-3 border p-2">
+            <div class="col-lg-6">
+                <label for="inputAddress" class="form-label fw-semibold">Primer nombre</label>
+                <input type="text" class="form-control" id="inputAddress" name="pnombre" [(ngModel)] = infoToUpdate.client.primerNombre>
+            </div>
+            <div class="col-lg-6">
+                <label for="inputAddress" class="form-label fw-semibold">Segundo Nombre</label>
+                <input type="text" class="form-control" id="inputAddress" name="snombre" [(ngModel)] = infoToUpdate.client.segundoNombre>
+            </div>
+        </div>
+        <div class="row mt-3 border p-2">
+            <div class="col-lg-6">
+                <label for="inputAddress" class="form-label fw-semibold">Primer Apellido</label>
+                <input type="text" class="form-control" id="inputAddress" name="papellido" [(ngModel)] = infoToUpdate.client.primerApellido>
+            </div>
+            <div class="col-lg-6">
+                <label for="inputAddress" class="form-label fw-semibold">Segundo Apellido</label>
+                <input type="text" class="form-control" id="inputAddress" name="sapellido" [(ngModel)] = infoToUpdate.client.segundoApellido>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col mt-3 border p-2">
+            <label for="inputEmail4" class="form-label fw-semibold">Correo</label>
+            <input type="email" class="form-control form-control-sm" id="inputEmail4" name="email" [(ngModel)] = infoToUpdate.client.email>
+          </div>
+        </div>
+        <div class="row mt-3 border p-2">
+            <div class="col-4">
+              <label for="exampleFormControlSelect1" class="form-label fw-semibold">Tipo Documento</label>
+              <select class="form-control" id="exampleFormControlSelect1" name="tipoDocumento" [(ngModel)] = infoToUpdate.client.tipoDocumento.id>
+                <option value="">Seleccione.</option>
+                <option *ngFor="let documento of selectDocumentInfo" value= {{documento.id}}>
+                  {{documento.tipoDocumento}}
+                </option>
+              </select>
+            </div>
+            <div class="col-4">
+              <label for="inputAddress" class="form-label fw-semibold">Numero Documento</label>
+              <input type="text" class="form-control" id="inputAddress" name="numDocumento" [(ngModel)] = infoToUpdate.client.numeroDocumento>
+            </div>
+            <div class="col-4">
+              <label for="exampleFormControlSelect1" class="form-label fw-semibold">Pais</label>
+              <select class="form-control" id="exampleFormControlSelect1"  name="pais"  [(ngModel)] = infoToUpdate.client.pais.id>
+                <option value="">Seleccione.</option>
+                <option *ngFor="let pais of selectCountryInfo" value= {{pais.id}}>
+                  {{pais.nombrePais}}
+                </option>
+              </select>
+            </div>
+        </div>
+        <div class="row mt-3 border p-2">
+            <div class="col-lg-6">
+              <label for="inputAddress" class="form-label fw-semibold">Numero de teléfono</label>
+              <input type="text" class="form-control" id="inputAddress" name="Telefono" [(ngModel)] = infoToUpdate.client.telefono>
+            </div>
+            <div class="col-lg-6">
+              <label for="exampleFormControlSelect1" class="form-label fw-semibold">Tipo de telefono</label>
+              <select class="form-control" id="exampleFormControlSelect1" name="tipoTelefono" [(ngModel)] = infoToUpdate.client.tipoTelefono.id>
+                <option value="">Seleccione.</option>
+                <option *ngFor="let type of selectPhoneInfo" value= {{type.id}}>
+                  {{type.tipoTelefono}}
+                </option>
+              </select>
+            </div>
+        </div>
+        <div class="row mt-3 border p-2">
+            <div class="col-lg-6">
+              <label for="inputPassword4" class="form-label fw-semibold">Contraseña</label>
+              <input type="password" class="form-control form-control-sm" id="inputPassword4" name="password" [(ngModel)] = infoToUpdate.client.contrasenia>
+            </div>
+            <div class="col-lg-6 ">
+              <label for="inputPassword4" class="form-label fw-semibold">Confirme Contraseña</label>
+              <input type="password" class="form-control form-control-sm" id="inputPassword4" name="passwordConfirm" [(ngModel)] = passwordConfirm>
+            </div>
+          </div>
+      </form>
+    <hr>
+    <form class="row g-3">
+        <div class="row mt-3 border p-2">
+            <h3>Direccion de Facturación</h3>
+            <div class="col-lg-6">
+                <label for="inputAddress" class="form-label fw-semibold">Dirección.</label>
+                <input type="text" class="form-control" id="inputAddress" name="pnombre" [(ngModel)] = infoToUpdate.adressToInvoice.direccion>
+            </div>
+            <div class="col-lg-6">
+                <label for="inputAddress" class="form-label fw-semibold">Codigo ZIP.</label>
+                <input type="text" class="form-control" id="inputAddress" name="snombre" [(ngModel)] = infoToUpdate.adressToInvoice.zipCode>
+            </div>
+        </div>
+    </form>
+    <hr>
+    <form class="row g-3">
+        <h3>Direccion de envío</h3>
+        <div class="row mt-3 border p-2">
+            <div class="col-lg-6">
+                <label for="inputAddress" class="form-label fw-semibold">Dirección</label>
+                <input type="text" class="form-control" id="inputAddress" name="pnombre" [(ngModel)] = infoToUpdate.adresstosend.direccion>
+            </div>
+            <div class="col-lg-6">
+                <label for="inputAddress" class="form-label fw-semibold">Codigo ZIP.</label>
+                <input type="text" class="form-control" id="inputAddress" name="snombre" [(ngModel)] = infoToUpdate.adresstosend.zipCode>
+            </div>
+        </div>
+    </form>
+    </div>
+    <div>
+        <button type="submit" class="btn btn-info btn-lg text-capitalize fw-semibold mt-5" (click)="onSubmit()">Actualizar Información.</button>
+    </div>
+  </div>
