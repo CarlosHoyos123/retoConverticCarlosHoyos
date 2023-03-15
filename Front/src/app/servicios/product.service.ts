@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { ProductEntity } from '../interface/productEntity';
 import { DetailResponse } from '../interface/detailResponse';
 import { HomeGridProduct } from '../interface/homeGridPriduct';
+import { Categories } from '../interface/categories';
 
 @Injectable({
     providedIn: 'root',
@@ -40,5 +41,10 @@ ProductDetail(id: number): Observable<DetailResponse> {
 sexProductList(sex: string){
     const url = `${this.url}list/`+sex;
     return this._http.get<HomeGridProduct[]>(url)
+}
+
+categoriesList(){
+    const url = `${this.url}categories`;
+    return this._http.get<Categories[]>(url)
 }
 }

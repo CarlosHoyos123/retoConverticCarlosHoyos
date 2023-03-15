@@ -4,8 +4,6 @@ CREATE DATABASE e_commerce
     WITH
     OWNER = postgres
     ENCODING = 'UTF8'
-    LC_COLLATE = 'English_United States.1252'
-    LC_CTYPE = 'English_United States.1252'
     TABLESPACE = pg_default
     CONNECTION LIMIT = -1
     IS_TEMPLATE = False;
@@ -109,7 +107,7 @@ CREATE TABLE IF NOT EXISTS tblfacturas(
 id_factura          uuid DEFAULT uuid_generate_v1 () PRIMARY KEY,
 fecha_factura       DATE        NOT NULL,
 ID_cliente          INTEGER,    FOREIGN KEY (ID_cliente)REFERENCES tblclientes(id_cliente),
-total_factura       NUMERIC(8,2) NOT NULL,
+total_factura       NUMERIC(15,2) NOT NULL,
 ID_estado           INTEGER  DEFAULT 1,    FOREIGN KEY (ID_estado) REFERENCES tblestados_factura(id_estado),
 ID_direccion_envio  int4,       FOREIGN KEY (ID_direccion_envio) REFERENCES tbldirecciones_envio(id_direccion_envio),
 ID_direccion_facturacion int4,  FOREIGN KEY (ID_direccion_facturacion) REFERENCES tbldireccion_facturacion(id_direccion_facturacion)
@@ -282,7 +280,7 @@ ID_producto         INTEGER,    FOREIGN KEY (ID_producto) REFERENCES tblproducto
 ID_color            INTEGER,    FOREIGN KEY (ID_color) REFERENCES tblcolor(id_color),
 ID_talla            INTEGER,    FOREIGN KEY (ID_talla) REFERENCES tbltallas(id_talla),
 cantidad            INTEGER        NOT NULL,
-total_producto      NUMERIC(8,2)
+total_producto      NUMERIC(14,2)
 );
 
 

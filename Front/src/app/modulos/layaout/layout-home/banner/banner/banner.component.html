@@ -4,7 +4,24 @@
             <h1>Encuentra la vestimenta perfecta.</h1>
         </div>
         <div class="col-sm-6 col-lg-3 p-4 align-items-center">
-            <button type="button" class="btn btn-primary">Ver categorias</button>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#categoriesModal">Ver categorias</button>
         </div>
     </div>
 </div>
+<div class="modal fade" id="categoriesModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">{{header}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <app-categories-table 
+          (selected) = "findProductsPerCategorie($event)"></app-categories-table>
+        </div>
+        <div class="modal-footer">
+            <p class="fs-3 text-center fw-semibold">Convetic<span class="fw-bold" style="color: MediumTurquoise;">Shop</span></p>
+        </div>
+      </div>
+    </div>
+  </div>

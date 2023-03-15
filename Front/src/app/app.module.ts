@@ -17,6 +17,7 @@ import { BannerComponent } from './modulos/layaout/layout-home/banner/banner/ban
 import { ProductsComponent } from './modulos/layaout/layout-home/salient/products/products.component';
 import { LayoutDescriptionComponent } from './modulos/layaout/layout-description/layout-description.component';
 import { ProfileDescriptionComponent } from './modulos/detailed/profile_description/profile-description/profile-description.component';
+import { CategoriesTableComponent } from './modulos/home/categories-table/categories-table.component';
 
 
 
@@ -30,7 +31,8 @@ import { ProfileDescriptionComponent } from './modulos/detailed/profile_descript
     BannerComponent,
     ProductsComponent,
     LayoutDescriptionComponent,
-    ProfileDescriptionComponent
+    ProfileDescriptionComponent,
+    CategoriesTableComponent
   ],
   imports: [
     BrowserModule,
