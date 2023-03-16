@@ -121,15 +121,12 @@ public class ShoppingCarServices {
 	@Transactional
 	public ConfirmBuy confirmProcess(ConfirmBuy info) {
 		 List<CarGridResponse> clientCar = itemsByUser(info.getInvoice().getCliente());
-		 System.out.println("este es el carrito del cliente: "+clientCar.toString());
 		 float total = 0;
 		 Invoice result = saveInvoice(info.getInvoice());
 		 List<InvoiceDetail> resultDetail = saveDetail(clientCar, result);
 		 for (InvoiceDetail oneDetail : resultDetail) {
-			 System.out.println("de tabla detalle: "+oneDetail);
 			 total += oneDetail.getTotal();
 			 QuantityAvailable productAvailable = quantityAvailableRepository.findByProductoAndColorAndTalla(oneDetail.getProducto(), oneDetail.getColor(), oneDetail.getTalla());
-			 System.out.println("de tabla inventario: "+productAvailable);
 			 productAvailable.setCantidad(productAvailable.getCantidad()-oneDetail.getCantidad());
 			 quantityAvailableRepository.save(productAvailable);
 		 }

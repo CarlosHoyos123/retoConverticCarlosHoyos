@@ -58,9 +58,7 @@ public class ClientsServices {
 	public RespuestaAuth verificarUsuario(Login user) {
 		RespuestaAuth respuesta = new RespuestaAuth();
 		com.ecoomerce.JPA.entitys.Client client = clientesRepository.findByEmail(user.getCorreo());
-		if(client == null)
-			System.out.println("La busqeda es nula");
-		if (client.getContrasenia().equals(user.getClave())) {
+		if (client != null && client.getContrasenia().equals(user.getClave())) {
 			respuesta.setClient(client);
 			respuesta.setState(true);
 			respuesta.setText("Logeo exitoso.");

@@ -17,7 +17,6 @@ import com.ecoomerce.JPA.repositories.ProductsRepository;
 import com.ecoomerce.JPA.repositories.QuantityAvailableRepository;
 import com.ecoomerce.JPA.repositories.ShoppingCartRepository;
 import com.ecoomerce.JPA.repositories.SizeRepository;
-import com.ecoomerce.JPA.services.Products;
 import com.ecoomerce.JPA.utils.ProductDetailed;
 import com.ecoomerce.JPA.utils.ProductForList;
 import com.ecoomerce.JPA.utils.detailResponse;
@@ -28,7 +27,7 @@ import jakarta.persistence.StoredProcedureQuery;
 
 
 @Service
-public class ProductsServices implements Products {
+public class ProductsServices {
 
 	ProductsRepository productosRepository;
 	QuantityAvailableRepository quantityAvailableRepository;
@@ -164,5 +163,4 @@ public class ProductsServices implements Products {
 			return null;
 		}
 	}
-		
 }

@@ -69,7 +69,7 @@ public class carController {
 			 return new ResponseEntity<ConfirmBuy>(response, HttpStatus.OK);
 		 }catch (Exception e) {
 			System.out.println(e.getMessage());
-			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		}
 	 }
 }
