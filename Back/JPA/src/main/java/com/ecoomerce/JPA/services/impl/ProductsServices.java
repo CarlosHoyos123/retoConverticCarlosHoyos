@@ -102,7 +102,7 @@ public class ProductsServices {
 		boolean bandera = true;
 		for (QuantityAvailable stock : StockAvailable) {
 			Size size = sizeRepository.findById((long) stock.getTalla()).orElseThrow();
-			Color color = colorRepository.findById((long) stock.getColor()).orElseThrow();
+			Color color = colorRepository.findById(stock.getColor()).orElseThrow();
 			if(bandera){
 				//Esta bandera agrega un primer registro para las siguientes comparaciones y evitar registros duplicados
 				sizesAvailable.add(size);

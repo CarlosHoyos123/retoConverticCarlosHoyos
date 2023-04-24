@@ -20,11 +20,16 @@ public class Color {
 	private String hexadecimal;
 	
 	public Color() {
-		
 	}
 
 	public Color(String color, String hexadecimal) {
 		super();
+		this.color = color;
+		this.hexadecimal = hexadecimal;
+	}
+
+	public Color(int id, String color, String hexadecimal) {
+		this.id = id;
 		this.color = color;
 		this.hexadecimal = hexadecimal;
 	}

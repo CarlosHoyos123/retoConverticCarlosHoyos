@@ -60,10 +60,7 @@ public class Client {
 		
 	}
 
-	public Client(String email, String contrasenia, String primerNombre, String segundoNombre, String primerApellido,
-			String segundoApellido, PhoneType tipoTelefono, String telefono, Country pais, String numeroDocumento,
-			IdType tipoDocumento) {
-		super();
+	public Client(String email, String contrasenia, String primerNombre, String segundoNombre, String primerApellido, String segundoApellido, PhoneType tipoTelefono, String telefono, Country pais, String numeroDocumento, IdType tipoDocumento) {
 		this.email = email;
 		this.contrasenia = contrasenia;
 		this.primerNombre = primerNombre;

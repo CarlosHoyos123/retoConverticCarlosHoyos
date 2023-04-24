@@ -54,7 +54,7 @@ public class AuthController {
 	@PostMapping("/create")
 	public ResponseEntity<UserCreateResponse> guardarNuevoUsuario(@RequestBody Client newClient) {
 		try {
-			return new ResponseEntity<UserCreateResponse>(clientsServices.saveNewClient(newClient), HttpStatus.OK);
+			return new ResponseEntity<UserCreateResponse>(clientsServices.saveNewClient(newClient), HttpStatus.CREATED);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
@@ -64,7 +64,7 @@ public class AuthController {
 	@PostMapping("/update")
 	public ResponseEntity<UserCreateResponse> ActualizarUsuario(@RequestBody UpdateUserInfo Client) {
 		try {
-			return new ResponseEntity<UserCreateResponse>(clientsServices.updateClient(Client), HttpStatus.OK);
+			return new ResponseEntity<UserCreateResponse>(clientsServices.updateClient(Client), HttpStatus.ACCEPTED);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);

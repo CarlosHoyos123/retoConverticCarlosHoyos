@@ -2,20 +2,11 @@ package com.ecoomerce.JPA.services.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.ecoomerce.JPA.entitys.*;
+import com.ecoomerce.JPA.repositories.*;
 import org.springframework.stereotype.Service;
 
-import com.ecoomerce.JPA.entitys.Invoice;
-import com.ecoomerce.JPA.entitys.InvoiceDetail;
-import com.ecoomerce.JPA.entitys.Product;
-import com.ecoomerce.JPA.entitys.QuantityAvailable;
-import com.ecoomerce.JPA.entitys.ShoppingCar;
-import com.ecoomerce.JPA.repositories.ColorRepository;
-import com.ecoomerce.JPA.repositories.InvoiceDetailRepository;
-import com.ecoomerce.JPA.repositories.InvoiceRepository;
-import com.ecoomerce.JPA.repositories.ProductsRepository;
-import com.ecoomerce.JPA.repositories.QuantityAvailableRepository;
-import com.ecoomerce.JPA.repositories.ShoppingCartRepository;
-import com.ecoomerce.JPA.repositories.SizeRepository;
 import com.ecoomerce.JPA.utils.CarGridResponse;
 import com.ecoomerce.JPA.utils.ConfirmBuy;
 
@@ -31,13 +22,10 @@ public class ShoppingCarServices {
 	private InvoiceRepository invoiceRepository;
 	private InvoiceDetailRepository invoiceDetailRepository;
 	private QuantityAvailableRepository quantityAvailableRepository;
-	private EmailService emailService;
 
-	public ShoppingCarServices(ShoppingCartRepository shoppingCartRepository, ColorRepository colorRepository,
-			SizeRepository sizeRepository, ProductsRepository productosRepository, InvoiceRepository invoiceRepository,
-			InvoiceDetailRepository invoiceDetailRepository, QuantityAvailableRepository quantityAvailableRepository,
-			EmailService emailService) {
-		super();
+	private ClientesRepository clientesRepository;
+
+	public ShoppingCarServices(ShoppingCartRepository shoppingCartRepository, ColorRepository colorRepository, SizeRepository sizeRepository, ProductsRepository productosRepository, InvoiceRepository invoiceRepository, InvoiceDetailRepository invoiceDetailRepository, QuantityAvailableRepository quantityAvailableRepository, ClientesRepository clientesRepository) {
 		this.shoppingCartRepository = shoppingCartRepository;
 		this.colorRepository = colorRepository;
 		this.sizeRepository = sizeRepository;
@@ -45,17 +33,15 @@ public class ShoppingCarServices {
 		this.invoiceRepository = invoiceRepository;
 		this.invoiceDetailRepository = invoiceDetailRepository;
 		this.quantityAvailableRepository = quantityAvailableRepository;
-		this.emailService = emailService;
+		this.clientesRepository = clientesRepository;
 	}
-
 	public List<CarGridResponse> itemsByUser(int client) {
 		List<CarGridResponse> response = new ArrayList<CarGridResponse>();
-		List<ShoppingCar> items = (List<ShoppingCar>) shoppingCartRepository.findByCliente(client);
-		
+		List<ShoppingCar> items = shoppingCartRepository.findByCliente(client);
 		for (ShoppingCar item : items) {
 			try {
 				CarGridResponse information = new CarGridResponse(item.getId(), null, null, null, item.getCantidad());
-				information.setColor(colorRepository.findById((long) item.getColor()).orElseThrow(() -> new NullPointerException("Product not found")));
+				information.setColor(colorRepository.findById(item.getColor()).orElseThrow(() -> new NullPointerException("Product not found")));
 				information.setTalla(sizeRepository.findById((long) item.getTalla()).orElseThrow(() -> new NullPointerException("Product not found")));
 				information.setProducto(productosRepository.findById((long) item.getProducto()).orElseThrow(() -> new NullPointerException("Product not found")));
 				response.add(information);
@@ -65,38 +51,38 @@ public class ShoppingCarServices {
 		}
 		return response;
 	}
-	
+
 	@Transactional
-	public void deleteCarByUser(int client) {
+	public Client deleteCarByUser(Client client) {
 		try {
-		shoppingCartRepository.deleteByCliente(client);
-		}catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-	}
-	
-	public CarGridResponse deleteitemByUser(CarGridResponse carItem) {
-		try {
-		shoppingCartRepository.deleteById((long) carItem.getIdCar());
-		return carItem;
+			shoppingCartRepository.deleteByCliente(client.getCliente());
+			return client;
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 			return null;
 		}
 	}
-	
+
+	public CarGridResponse deleteitemByUser(CarGridResponse carItem) {
+		try {
+			shoppingCartRepository.deleteById((long) carItem.getIdCar());
+			return carItem;
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+			return null;
+		}
+	}
+
 	public ShoppingCar saveItem(ShoppingCar item) {
 		try {
-			ShoppingCar result = shoppingCartRepository.save(item);
-			return result;
+			return shoppingCartRepository.save(item);
 		} catch (Exception e) {
 			return null;
 		}
 	}
 
 	public Invoice saveInvoice(Invoice invoice) {
-		Invoice result = invoiceRepository.save(invoice);
-		return result;
+		return invoiceRepository.save(invoice);
 	}
 
 	public List<InvoiceDetail> saveDetail(List<CarGridResponse> invoiceDetail, Invoice invoiceSaved) {
@@ -117,26 +103,25 @@ public class ShoppingCarServices {
 		}
 		return savedDetail;
 	}
-	
+
 	@Transactional
 	public ConfirmBuy confirmProcess(ConfirmBuy info) {
-		 List<CarGridResponse> clientCar = itemsByUser(info.getInvoice().getCliente());
-		 float total = 0;
-		 Invoice result = saveInvoice(info.getInvoice());
-		 List<InvoiceDetail> resultDetail = saveDetail(clientCar, result);
-		 for (InvoiceDetail oneDetail : resultDetail) {
-			 total += oneDetail.getTotal();
-			 QuantityAvailable productAvailable = quantityAvailableRepository.findByProductoAndColorAndTalla(oneDetail.getProducto(), oneDetail.getColor(), oneDetail.getTalla());
-			 productAvailable.setCantidad(productAvailable.getCantidad()-oneDetail.getCantidad());
-			 quantityAvailableRepository.save(productAvailable);
-		 }
-		 result.setTotal(total);
-		 Invoice savedInovice = saveInvoice(result);
-		 deleteCarByUser(info.getInvoice().getCliente());
-		 ConfirmBuy response = new ConfirmBuy(savedInovice, resultDetail, null);
-		 
-		 
-		 
+		List<CarGridResponse> clientCar = itemsByUser(info.getInvoice().getCliente());
+		float total = 0;
+		Invoice result = saveInvoice(info.getInvoice());
+		List<InvoiceDetail> resultDetail = saveDetail(clientCar, result);
+		for (InvoiceDetail oneDetail : resultDetail) {
+			total += oneDetail.getTotal();
+			QuantityAvailable productAvailable = quantityAvailableRepository.findByProductoAndColorAndTalla(oneDetail.getProducto(), oneDetail.getColor(), oneDetail.getTalla());
+			productAvailable.setCantidad(productAvailable.getCantidad()-oneDetail.getCantidad());
+			quantityAvailableRepository.save(productAvailable);
+		}
+		result.setTotal(total);
+		Invoice savedInovice = saveInvoice(result);
+		deleteCarByUser(clientesRepository.findById((long) info.getInvoice().getCliente()).orElseThrow());
+		ConfirmBuy response = new ConfirmBuy(savedInovice, resultDetail, null);
+
+
 //		 Google announced that 
 //		 On May 30 2022 Google will no longer support the use of third-party apps or devices which ask you to sign in to your
 //		 Google Account using only your username and password. Instead, you’ll need to sign in using Sign in with Google or 
@@ -146,7 +131,7 @@ public class ShoppingCarServices {
 //		}catch (Exception e) {
 //			System.out.println(e.getCause());
 //		}
-		return null;
-		
+		return response;
+
 	}
 }

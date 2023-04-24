@@ -46,7 +46,7 @@ public class ShoppingCar {
 		this.color = color;
 		this.cantidad = cantidad;
 	}
-	
+
 	public ShoppingCar() {
 		
 	}

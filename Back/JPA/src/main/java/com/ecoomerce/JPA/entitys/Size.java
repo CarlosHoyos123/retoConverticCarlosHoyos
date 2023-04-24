@@ -29,6 +29,12 @@ public class Size {
 		this.talla = talla;
 	}
 
+	public Size(int id, String nombre, String talla) {
+		this.id = id;
+		this.nombre = nombre;
+		this.talla = talla;
+	}
+
 	public int getId() {
 		return id;
 	}
