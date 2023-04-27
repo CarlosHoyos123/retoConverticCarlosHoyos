@@ -12,7 +12,7 @@ import jakarta.persistence.Table;
 public class Fabricante {
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_fabricante")
 	private int id;
 	@Column(name="nombre_fabricante")

@@ -47,6 +47,15 @@ public class ShoppingCar {
 		this.cantidad = cantidad;
 	}
 
+	public ShoppingCar(int cliente, Date desde, int producto, int talla, int color, int cantidad) {
+		this.cliente = cliente;
+		this.desde = desde;
+		this.producto = producto;
+		this.talla = talla;
+		this.color = color;
+		this.cantidad = cantidad;
+	}
+
 	public ShoppingCar() {
 		
 	}

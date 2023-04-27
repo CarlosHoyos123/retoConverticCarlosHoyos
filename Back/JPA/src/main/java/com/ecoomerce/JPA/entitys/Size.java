@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 @Table(name="tbltallas")
 public class Size {
 	 @Id
-	 @GeneratedValue(strategy=GenerationType.AUTO)
+	 @GeneratedValue(strategy=GenerationType.IDENTITY)
 	 @Column(name="id_talla")
 	 private int id;
 	 @Column(name="nombre")

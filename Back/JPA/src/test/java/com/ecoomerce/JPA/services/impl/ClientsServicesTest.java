@@ -8,6 +8,7 @@ import com.ecoomerce.JPA.entitys.PhoneType;
 import com.ecoomerce.JPA.repositories.AdressToSendRepository;
 import com.ecoomerce.JPA.repositories.ClientesRepository;
 import com.ecoomerce.JPA.repositories.InvoiceAdressRepository;
+import com.ecoomerce.JPA.utils.Login;
 import com.ecoomerce.JPA.utils.UpdateUserInfo;
 import com.ecoomerce.JPA.utils.UserCreateResponse;
 import org.h2.command.dml.MergeUsing;
@@ -38,13 +39,12 @@ class ClientsServicesTest {
     @Test
     void saveNewClientTest() {
         //Given
-        Optional<Client> nuevo = crearClienteEjemplo();
+        Client nuevo = crearClienteEjemplo().orElseThrow();
         when(clientesRepository.save(any())).thenReturn(nuevo);
         //When
-        UserCreateResponse response = clientsServices.saveNewClient(nuevo.orElseThrow());
+        UserCreateResponse response = clientsServices.saveNewClient(nuevo);
         //Then
-        System.out.println(response);
-        assertNotNull(clientsServices.saveNewClient(nuevo.orElseThrow()));
+        assertEquals(response.getDescription(),"User created");
     }
 
     @Test

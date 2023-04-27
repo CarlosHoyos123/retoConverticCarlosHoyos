@@ -22,7 +22,6 @@ public class ShoppingCarServices {
 	private InvoiceRepository invoiceRepository;
 	private InvoiceDetailRepository invoiceDetailRepository;
 	private QuantityAvailableRepository quantityAvailableRepository;
-
 	private ClientesRepository clientesRepository;
 
 	public ShoppingCarServices(ShoppingCartRepository shoppingCartRepository, ColorRepository colorRepository, SizeRepository sizeRepository, ProductsRepository productosRepository, InvoiceRepository invoiceRepository, InvoiceDetailRepository invoiceDetailRepository, QuantityAvailableRepository quantityAvailableRepository, ClientesRepository clientesRepository) {

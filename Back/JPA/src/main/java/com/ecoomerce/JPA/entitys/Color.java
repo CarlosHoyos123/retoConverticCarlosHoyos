@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 @Table(name ="tblcolor")
 public class Color {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_color")
 	private int id;
 	@Column(name="color")

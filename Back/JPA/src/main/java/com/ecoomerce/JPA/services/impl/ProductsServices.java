@@ -62,10 +62,10 @@ public class ProductsServices {
 		}
 		return ProductsList;
 	}
-		
+
 	public List<ProductForList> productsByGender(int gender){
 		List<ProductForList> ProductsList = new ArrayList<ProductForList>();
-		Iterable<Product> productosCompletos =  productosRepository.findByGenero(gender);
+		List<Product> productosCompletos =  productosRepository.findByGenero(gender);
 		for (Product producto : productosCompletos) {
 			ProductForList productoLista = new ProductForList();
 			productoLista.setId(producto.getId()); 
@@ -85,13 +85,10 @@ public class ProductsServices {
 		return mostSelling;
 	}
 	
-	public Boolean saveCarItem(ShoppingCar carItem) {
+	public ShoppingCar saveCarItem(ShoppingCar carItem) {
 		try {
-			shoppingCartRepository.save(carItem);
-			return true;
-		}catch (Exception e) {
-			return false;
-		} 
+			return shoppingCartRepository.save(carItem);
+		}catch (Exception e) {return null;}
 	}
 	 
 	public detailResponse getProductDetail(int producto) {
@@ -139,7 +136,7 @@ public class ProductsServices {
 	
 	public List<String> obtenerlistaNombreProductos() {
 		ArrayList<String> listaNombresProductos = new ArrayList<>();
-		Iterable<Product> listaProductos = productosRepository.findAll();
+		List<Product> listaProductos = productosRepository.findAll();
 		for (Product producto : listaProductos) {
 			listaNombresProductos.add(producto.getProducto());
 		}

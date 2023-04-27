@@ -41,7 +41,7 @@ class ShoppingCarServicesTest {
     @MockBean
     InvoiceDetailRepository invoiceDetailRepository;
     @MockBean
-    private QuantityAvailableRepository quantityAvailableRepository;
+    QuantityAvailableRepository quantityAvailableRepository;
     @MockBean
     ClientesRepository clientesRepository;
     @Autowired
@@ -61,16 +61,15 @@ class ShoppingCarServicesTest {
         //then
         assertFalse(records.isEmpty());
         verify(shoppingCartRepository, times(1)).findByCliente(anyInt());
-        assertTrue(shoppingCarServices.itemsByUser(anyInt()).size()==2);
+        assertTrue(records.size()==2);
     }
 
     @Test
     void deleteCarByUser() {
+        Client response = shoppingCarServices.deleteCarByUser(crearClienteEjemplo().orElseThrow());
         //then
-        assertDoesNotThrow(() -> {
-            shoppingCarServices.deleteCarByUser(crearClienteEjemplo().orElseThrow());
-        });
-        assertNotNull(shoppingCarServices.deleteCarByUser(crearClienteEjemplo().orElseThrow()));
+        assertNotNull(response);
+        assertEquals(response.getPrimerNombre(),"carlos");
     }
 
     @Test
@@ -85,25 +84,32 @@ class ShoppingCarServicesTest {
     void saveItemTest() {
         //Given
         when(shoppingCartRepository.save(any(ShoppingCar.class))).thenReturn(crearCar());
+        //When
+        ShoppingCar response = shoppingCarServices.saveItem(crearCar());
         //then
-        assertNotNull(shoppingCarServices.saveItem(crearCar()));
+        assertNotNull(response);
+        assertEquals(response.getId(),1);
     }
 
     @Test
     void saveInvoiceTest() {
         //Given
         when(invoiceRepository.save(any(Invoice.class))).thenReturn(crearInvoice());
+        //When
+        Invoice response = shoppingCarServices.saveInvoice(crearInvoice());
         //then
-        shoppingCarServices.saveInvoice(crearInvoice());
+        assertEquals(response.getCliente(), 1);
     }
 
     @Test
-    void saveDetail() {
+    void saveDetailTest() {
         //Given
         when(productosRepository.findById(anyLong())).thenReturn(Optional.of(crearProduct()));
         when(invoiceDetailRepository.save(any(InvoiceDetail.class))).thenReturn(crearDetalle());
+        //When
+        List<InvoiceDetail> response = shoppingCarServices.saveDetail(listaCarGrid(),crearInvoice());
         //then
-        assertTrue(shoppingCarServices.saveDetail(listaCarGrid(),crearInvoice()).size()==2);
+        assertEquals(response.size(),2);
     }
 
     @Test

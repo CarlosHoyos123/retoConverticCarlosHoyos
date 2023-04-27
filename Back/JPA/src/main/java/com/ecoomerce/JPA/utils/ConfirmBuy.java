@@ -17,6 +17,7 @@ public class ConfirmBuy {
 		this.invoiceDetail = invoiceDetail;
 		this.car = car;
 	}
+
 	public Invoice getInvoice() {
 		return invoice;
 	}

@@ -39,32 +39,29 @@ public class homeController {
 		try {
 			return new ResponseEntity<List<ProductForList>>(productos.getList(bySex), HttpStatus.OK);
 		}catch(Exception e ){
-			System.out.println(e.getMessage());
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
-		
 	}
 
-@GetMapping("categories")
+	@GetMapping("/categories")
 	public ResponseEntity<List<Category>> enviarCategorias(){
 		List<Category> CategoriesList = new ArrayList<Category>();
 		try {
 			categorias.findAll().forEach(CategoriesList::add);
 			return new ResponseEntity<List<Category>>(CategoriesList, HttpStatus.OK);
 		} catch (Exception e) {
-			return new ResponseEntity<List<Category>>(CategoriesList, HttpStatus.NO_CONTENT);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		}
 	}
 	
-	 @PostMapping ("cart")
-	 public ResponseEntity<Boolean> productDetailA(@RequestBody ShoppingCar carItem){ 
+	 @PostMapping ("/cart")
+	 public ResponseEntity<ShoppingCar> productDetailA(@RequestBody ShoppingCar carItem){
 		 try { 
-			Boolean resultado = productos.saveCarItem(carItem); 
-		 	return new ResponseEntity<Boolean>(resultado, HttpStatus.OK); 
+			ShoppingCar saved = productos.saveCarItem(carItem);
+			return new ResponseEntity<ShoppingCar>(saved, HttpStatus.OK);
 		 }catch(Exception e) {
-			System.out.println(e.getMessage());
-			return new ResponseEntity<>(HttpStatus.NO_CONTENT); 
-		 } 
+			 return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		 }
 	}
 
 	@PostMapping("product/detail")

@@ -9,39 +9,9 @@ INSERT INTO tblpaises (nombre_pais) VALUES ('PARAGUAY');
 INSERT INTO tblpaises (nombre_pais) VALUES ('MEXICO');
 INSERT INTO tblpaises (nombre_pais) VALUES ('EEUU');
 
-INSERT INTO tbltipo_telefono (tipo_telefono) VALUES ('MOVIL');
-INSERT INTO tbltipo_telefono (tipo_telefono) VALUES ('FIJO');
-
---+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
-INSERT INTO tblpaises (nombre_pais) VALUES ('COLOMBIA');
-INSERT INTO tblpaises (nombre_pais) VALUES ('ECUADOR');
-INSERT INTO tblpaises (nombre_pais) VALUES ('PARAGUAY');
-INSERT INTO tblpaises (nombre_pais) VALUES ('MEXICO');
-INSERT INTO tblpaises (nombre_pais) VALUES ('EEUU');
-
-
-INSERT INTO tbldirecciones_envio (direccion, zip_code, ID_cliente, id_pais) VALUES ('calle 78 b 85 A 28','050041',1,1);
-INSERT INTO tbldirecciones_envio (direccion, zip_code, ID_cliente, id_pais) VALUES ('carrera 85 B 78 b 40','050046',2,2);
-INSERT INTO tbldirecciones_envio (direccion, zip_code, ID_cliente, id_pais) VALUES ('calle 35 76 b 20','050046',3,1);
-INSERT INTO tbldirecciones_envio (direccion, zip_code, ID_cliente, id_pais) VALUES ('carrera 85 23 c 01','050046',4,3);
-INSERT INTO tbldirecciones_envio (direccion, zip_code, ID_cliente, id_pais) VALUES ('calle 78 c 81 a 24','050046',5,4);
-INSERT INTO tbldirecciones_envio (direccion, zip_code, ID_cliente, id_pais) VALUES ('avenida 80 91 a 17','050046',6,1);
-
-
-
-
-INSERT INTO tbldireccion_facturacion (direccion, zip_code,ID_cliente, id_pais) VALUES ('calle 3 55 A 28','050061',1,1);
-INSERT INTO tbldireccion_facturacion (direccion, zip_code,ID_cliente, id_pais) VALUES ('circular 4 38 b 120','050066',2,2);
-INSERT INTO tbldireccion_facturacion (direccion, zip_code,ID_cliente, id_pais) VALUES ('calle 3 55 A 80','050061',4,3);
-INSERT INTO tbldireccion_facturacion (direccion, zip_code,ID_cliente, id_pais) VALUES ('circular 1 38 b 10','050066',3,1);
-INSERT INTO tbldireccion_facturacion (direccion, zip_code,ID_cliente, id_pais) VALUES ('carrera 3 55 A 58','050061',5,2);
-INSERT INTO tbldireccion_facturacion (direccion, zip_code,ID_cliente, id_pais) VALUES ('circular 2 38 b 140','050066',6,1);
-
 
 INSERT INTO tbltipo_telefono (tipo_telefono) VALUES ('MOVIL');
 INSERT INTO tbltipo_telefono (tipo_telefono) VALUES ('FIJO');
-
 
 INSERT INTO tblclientes(email,contrasenia,Primer_nombre,segundo_nombre,primer_apellido,segundo_apellido,ID_tipo_telefono,telefono,ID_pais,documento, ID_documento)
                         VALUES('chrodriguez.bmdc@gmail.com','contrasenia1', 'carlos', 'andres', 'hoyos', 'rodriguez', 1, '3109203038', 3, '1128300400',4);
@@ -61,10 +31,6 @@ INSERT INTO tblclientes(email,contrasenia,Primer_nombre,segundo_nombre,primer_ap
 
 INSERT INTO tblestados_factura(estado,descripcion) VALUES ('Pendiente de pago','La orden ha sido tomada pero no ha sido entregada y pagada contraentrega');
 INSERT INTO tblestados_factura(estado,descripcion) VALUES ('Pagada','Este estado indica que la factura ya ha sido cancelada al ser entregada');
-
-INSERT INTO tblfacturas(fecha_factura,ID_cliente,total_factura,ID_estado,ID_direccion_envio,ID_direccion_facturacion)
-                        VALUES ('2022-08-25',1,  30000.00,   1,3,2);
-
 
 INSERT INTO tblfabricantes(nombre_fabricante,contacto_fabricante,telefono_fabricante) VALUES ('galax',      'paola cardona','3567890432');
 INSERT INTO tblfabricantes(nombre_fabricante,contacto_fabricante,telefono_fabricante) VALUES ('everfit',    'Luis Muñoz',   '3210984157');
@@ -96,8 +62,7 @@ INSERT INTO tblcategorias(nombre) VALUES ('panuelos');
 INSERT INTO tblcategorias(nombre) VALUES ('ropa deportiva');
 INSERT INTO tblcategorias(nombre) VALUES ('ropa piscina');
 INSERT INTO tblcategorias(nombre) VALUES ('blusas');
-
-
+                       
 INSERT INTO tbltallas(nombre,talla) VALUES('Extra Pequeña',   'XS');
 INSERT INTO tbltallas(nombre,talla) VALUES('Pequeña',   'S');
 INSERT INTO tbltallas(nombre,talla) VALUES('Mediana',   'M');
@@ -139,7 +104,6 @@ INSERT INTO tblproductos(plu,nombre_producto,ID_fabricante,precio,descripcion_pr
 INSERT INTO tblproductos(plu,nombre_producto,ID_fabricante,precio,descripcion_producto,fecha_creacion,ID_genero,cantidad_busquedas,fotos)
                 VALUES ('p012','camiseta estampada espadas',6,60000.00,'PARA HOMBRE EN ALGODON','2022-10-23',1,1,'../../../assets/images/espadas.jpg');
 
-
 INSERT INTO tblprod_color_talla(ID_producto,ID_color,ID_talla,inventario)VALUES(1,5,2,45);
 INSERT INTO tblprod_color_talla(ID_producto,ID_color,ID_talla,inventario)VALUES(2,4,3,87);
 INSERT INTO tblprod_color_talla(ID_producto,ID_color,ID_talla,inventario)VALUES(3,3,4,12);
@@ -172,3 +136,23 @@ INSERT INTO tblcategorias_producto (ID_categoria, ID_producto) VALUES(9,11);
 INSERT INTO tblcategorias_producto (ID_categoria, ID_producto) VALUES(5,12);
 INSERT INTO tblcategorias_producto (ID_categoria, ID_producto) VALUES(11,10);
 INSERT INTO tblcategorias_producto (ID_categoria, ID_producto) VALUES(9,6);
+               
+INSERT INTO tbldirecciones_envio (direccion, zip_code, ID_cliente, id_pais) VALUES ('calle 78 b 85 A 28','050041',1,1);
+INSERT INTO tbldirecciones_envio (direccion, zip_code, ID_cliente, id_pais) VALUES ('carrera 85 B 78 b 40','050046',2,2);
+INSERT INTO tbldirecciones_envio (direccion, zip_code, ID_cliente, id_pais) VALUES ('calle 35 76 b 20','050046',3,1);
+INSERT INTO tbldirecciones_envio (direccion, zip_code, ID_cliente, id_pais) VALUES ('carrera 85 23 c 01','050046',4,3);
+INSERT INTO tbldirecciones_envio (direccion, zip_code, ID_cliente, id_pais) VALUES ('calle 78 c 81 a 24','050046',5,4);
+INSERT INTO tbldirecciones_envio (direccion, zip_code, ID_cliente, id_pais) VALUES ('avenida 80 91 a 17','050046',6,1);
+
+
+INSERT INTO tbldireccion_facturacion (direccion, zip_code,ID_cliente, id_pais) VALUES ('calle 3 55 A 28','050061',1,1);
+INSERT INTO tbldireccion_facturacion (direccion, zip_code,ID_cliente, id_pais) VALUES ('circular 4 38 b 120','050066',2,2);
+INSERT INTO tbldireccion_facturacion (direccion, zip_code,ID_cliente, id_pais) VALUES ('calle 3 55 A 80','050061',4,3);
+INSERT INTO tbldireccion_facturacion (direccion, zip_code,ID_cliente, id_pais) VALUES ('circular 1 38 b 10','050066',3,1);
+INSERT INTO tbldireccion_facturacion (direccion, zip_code,ID_cliente, id_pais) VALUES ('carrera 3 55 A 58','050061',5,2);
+INSERT INTO tbldireccion_facturacion (direccion, zip_code,ID_cliente, id_pais) VALUES ('circular 2 38 b 140','050066',6,1);
+               
+INSERT INTO tblfacturas(fecha_factura,ID_cliente,total_factura,ID_estado,ID_direccion_envio,ID_direccion_facturacion)
+                        VALUES ('2022-08-25',1,  30000.00,1,7,2);
+               
+    

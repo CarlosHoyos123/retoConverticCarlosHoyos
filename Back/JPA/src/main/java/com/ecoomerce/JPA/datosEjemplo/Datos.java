@@ -4,6 +4,7 @@ import com.ecoomerce.JPA.entitys.*;
 import com.ecoomerce.JPA.utils.*;
 import jakarta.persistence.Column;
 
+import java.sql.Array;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.Arrays;
@@ -30,13 +31,18 @@ public class Datos {
     public static Country crearPais(){
         return new Country(0, "String nombrePais");
     }
+    public static ProductForList crearProductoLista(){
+        return new ProductForList(0, "Plu", "producto", 15000.00F, "descripcion", 0, "rutaFoto");
+    }
+    public static Category crearCategoria(){
+        return new Category( "nombre", "descripcion");
+    }
     public static List<Country> listaPaises(){
         return Arrays.asList(new Country(0, "String nombrePais"),new Country(1, "String nombre Otro Pais "));
     }
     public static List<PhoneType> listaTelefono(){
         return Arrays.asList(new PhoneType(0, "ejemplo telefono"),new PhoneType(1, "ejemplo telefono2"));
     }
-
     public static List<IdType> listaDocumentos(){
         return Arrays.asList(new IdType(0, "ejemplo documento"),new IdType(1, "ejemplo documento2"));
     }
@@ -53,29 +59,15 @@ public class Datos {
                 "1128300400",
                 new IdType(4, "CEDULA DE EXTRANGERIA")));
     }
-
     public static Optional<InvoiceAdress> createInoviceAdress(){
         return Optional.of(new InvoiceAdress("DireccionEjemploI", "zipCodeEjemploI", 0, 0));
     }
-
     public static Optional<AdressToSend> createAdressTpSend(){
         return Optional.of(new AdressToSend("direccionEjemploA",  "zipCodeEjemploA", 0, 0));
     }
-
     public static Login UserAuth(){
         return new Login("ejemplo@gmail.com", "contrasenia1");
     }
-
-    public static List<ShoppingCar> itemsExList(){
-        return Arrays.asList(
-                new ShoppingCar(1, 1, new java.sql.Date(2023,06,02), 4, 1, 2, 10),
-                new ShoppingCar(2, 1, new java.sql.Date(2023,06,02), 4, 1, 2, 10));
-    }
-
-    public static List<CarGridResponse> listaCarGrid(){
-        return Arrays.asList(crearCarGrid(), crearCarGrid());
-    }
-
     public static ShoppingCar crearCar(){
         return new ShoppingCar(1, 1, new java.sql.Date(2023,06,02), 4, 1, 2, 10);
     }
@@ -97,7 +89,9 @@ public class Datos {
                 "descripcionEjemplo", new Date(2023-02-02),
                 1, 20, "rutaFotoEjemplo");
     }
-
+    public static Fabricante crearFabricante(){
+        return new Fabricante("nombre", "contacto", "telefono");
+    }
     public static CarGridResponse crearCarGrid(){
         return new CarGridResponse(0, crearProduct(), crearSize(), crearColor(), 10);
     }
@@ -115,10 +109,31 @@ public class Datos {
     public static QuantityAvailable crearInventario(){
         return new QuantityAvailable(6, 2, 1, 4, 10);
     }
-
     public static RespuestaAuth respuestaPostiva(){
         return new RespuestaAuth(true, "Logeo exitoso.", "String type", crearClienteEjemplo().orElseThrow(), createInoviceAdress().orElseThrow(),
                 createAdressTpSend().orElseThrow());
     }
-
+    public static List<ProductForList> listaProdGender(){
+        return Arrays.asList(crearProductoLista(),crearProductoLista());
+    }
+    public static List<Category> listaCategorias(){
+        return Arrays.asList(crearCategoria(),crearCategoria());
+    }
+    public static List<Product> listaProductos() {
+        return Arrays.asList(crearProduct(),crearProduct());
+    }
+    public static List<QuantityAvailable> listaQuantity(){
+        return Arrays.asList(crearInventario(),crearInventario(),crearInventario());
+    }
+    public static ProductDetailed crearProdDetail(){
+        return new ProductDetailed("plu", "nombre", "fabricante",200F , "descripcion","rutaFoto");
+    }
+    public static List<ShoppingCar> itemsExList(){
+        return Arrays.asList(
+                new ShoppingCar(1, 1, new java.sql.Date(2023,06,02), 4, 1, 2, 10),
+                new ShoppingCar(2, 1, new java.sql.Date(2023,06,02), 4, 1, 2, 10));
+    }
+    public static List<CarGridResponse> listaCarGrid(){
+        return Arrays.asList(crearCarGrid(), crearCarGrid());
+    }
 }
